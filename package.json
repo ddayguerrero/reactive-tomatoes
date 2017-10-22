@@ -58,7 +58,7 @@
     "react-test-renderer": "15.5.4",
     "webpack-dev-server": "2.4.5"
   },
-  "name": "movie-database",
+  "name": "reactive-tomatoes",
   "version": "",
   "description": "",
   "main": "server.js",
