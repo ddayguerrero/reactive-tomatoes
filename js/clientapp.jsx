@@ -1,23 +1,21 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Landing from './landing';
+import Search from './search';
 
-const MyTitle = function(props) {
-  return (
-    <div>
-      <h1 style={{ color: props.color }}>{props.title}</h1>
+const PageNotFound = () => <h1> 404 </h1>;
+
+const App = () => (
+  <BrowserRouter>
+    <div className='app'>
+      <Switch>
+        <Route exact path='/' component={Landing} />
+        <Route path='/search' component={Search} />
+        <Route component={PageNotFound} />
+      </Switch>
     </div>
-  );
-};
+  </BrowserRouter> 
+);
 
-const MyFirstComponent = function() {
-  return (
-    <div id="my-first-component">
-      <MyTitle title="Game of Thrones" color="YellowGreen"/>
-      <MyTitle title="House of Cards" color="GreenYellow"/>
-      <MyTitle title="Stranger Things" color="Peru"/>
-      <MyTitle title="The Americans" color="Burlywood" />
-    </div>
-  );
-};
-
-render(<MyFirstComponent/>, document.getElementById('app'));
+render(<App/>, document.getElementById('app'));
