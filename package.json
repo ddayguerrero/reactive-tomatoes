@@ -5,7 +5,13 @@
     "dev": "webpack-dev-server",
     "format": "prettier --write --single-quote --print-width=120 --parser=flow --tab-width=2 \"js/**/*.{js, jsx}\"",
     "lint": "eslint **/*.{js,jsx} --quiet",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:update": "jest -u"
+  },
+  "jest": {
+    "snapshotSeralizers": ["jest-serializers-enzyme"]
   },
   "dependencies": {
     "axios": "0.16.1",
