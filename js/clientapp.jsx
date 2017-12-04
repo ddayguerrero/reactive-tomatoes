@@ -1,21 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Landing from './landing';
-import Search from './search';
+import App from './app';
 
-const PageNotFound = () => <h1> 404 </h1>;
+// Force render top-level App component
+const renderApp = () => {
+  render(<App />, document.getElementById('app'));
+};
+renderApp();
 
-const App = () => (
-  <BrowserRouter>
-    <div className='app'>
-      <Switch>
-        <Route exact path='/' component={Landing} />
-        <Route path='/search' component={Search} />
-        <Route component={PageNotFound} />
-      </Switch>
-    </div>
-  </BrowserRouter> 
-);
+if (module.hot) {
+  module.hot.accept('./app', () => {
+    renderApp();
+  });
+}
 
-render(<App/>, document.getElementById('app'));
+render(<App/>, document.getElementById('app')); 
