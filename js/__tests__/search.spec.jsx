@@ -6,17 +6,17 @@ import ShowCard from "../showcard";
 
 describe("Search", () => {
   it("renders correctly", () => {
-    const component = shallow(<Search />);
+    const component = shallow(<Search shows={preload.shows}/>);
     expect(component).toMatchSnapshot();
   });
   
   it("should should render the correct amount of shows", () => {
-    const component = shallow(<Search />);
+    const component = shallow(<Search shows={preload.shows}/>);
     expect(component.find(ShowCard).length).toEqual(preload.shows.length);
   });
   
   it("should render the correct amount of shows based on search term", () => {
-    const component = shallow(<Search />);
+    const component = shallow(<Search shows={preload.shows}/>);
     const searchTerm = 'black';
     expect(component.find('input').simulate('change', {target:{value:searchTerm}}))
     const showCount = preload.shows.filter(show => 
