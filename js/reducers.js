@@ -8,6 +8,7 @@ const setSearchTerm = (state, action) =>
   Object.assign({}, state, { searchTerm: action.payload });
 
 const rootReducer = (state = DEFAULT_STATE, action) => {
+  // inform new state, rerender
   switch (action.type) {
     case SET_SEARCH_TERM:
       return setSearchTerm(state, action);
