@@ -1,10 +1,10 @@
 // @flow
 
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import type { Match } from "react-router-dom";
-import { Provider } from 'react-redux';
-import store from './store';
+import { Provider } from "react-redux";
+import store from "./store";
 import Landing from "./landing";
 import Search from "./search";
 import Details from "./details";
@@ -13,8 +13,7 @@ import preload from "../data.json";
 const PageNotFound = () => <h1> 404 </h1>;
 
 const App = () => (
-  <BrowserRouter>
-    <Provider store={store}>
+  <Provider store={store}>
     <div className="app">
       <Switch>
         <Route exact path="/" component={Landing} />
@@ -34,8 +33,7 @@ const App = () => (
         <Route component={PageNotFound} />
       </Switch>
     </div>
-    </Provider>
-  </BrowserRouter>
+  </Provider>
 );
 
 export default App;
