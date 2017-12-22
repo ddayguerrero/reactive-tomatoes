@@ -27,4 +27,6 @@ const Search = (props: {
 const mapStateToProps = state => ({
   searchTerm: state.searchTerm
 })
+
+export const Unwrapped = Search; // for testing purposes
 export default connect(mapStateToProps)(Search);
