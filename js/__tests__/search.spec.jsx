@@ -1,26 +1,44 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, render } from "enzyme";
+import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
+import store from "../store";
 import preload from "../../data.json";
-import Search from "../search";
+import { Unwrapped as UnwrappedSearch } from "../search";
 import ShowCard from "../showcard";
+import { setSearchTerm } from "../actionCreators";
 
 describe("Search", () => {
   it("renders correctly", () => {
-    const component = shallow(<Search shows={preload.shows}/>);
+    const component = shallow(
+      <UnwrappedSearch shows={preload.shows} searchTerm="" />
+    );
     expect(component).toMatchSnapshot();
   });
-  
+
   it("should should render the correct amount of shows", () => {
-    const component = shallow(<Search shows={preload.shows}/>);
+    const component = shallow(
+      <UnwrappedSearch shows={preload.shows} searchTerm="" />
+    );
     expect(component.find(ShowCard).length).toEqual(preload.shows.length);
   });
-  
+
   it("should render the correct amount of shows based on search term", () => {
-    const component = shallow(<Search shows={preload.shows}/>);
-    const searchTerm = 'black';
-    expect(component.find('input').simulate('change', {target:{value:searchTerm}}))
-    const showCount = preload.shows.filter(show => 
-      `${show.title} ${show.description}`.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0);
-    expect(component.find(ShowCard).length).toEqual(showCount.length);
+    const searchTerm = "black";
+    store.dispatch(setSearchTerm(searchTerm));
+    const component = render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <UnwrappedSearch shows={preload.shows} searchTerm={searchTerm} />
+        </MemoryRouter>
+      </Provider>
+    );
+    const showCount = preload.shows.filter(
+      show =>
+        `${show.title} ${show.description}`
+          .toUpperCase()
+          .indexOf(searchTerm.toUpperCase()) >= 0
+    );
+    expect(component.find('.show-card').length).toEqual(showCount.length);
   });
 });
