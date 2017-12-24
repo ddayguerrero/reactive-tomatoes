@@ -24,5 +24,3 @@ if (module.hot) {
     renderApp();
   });
 }
-
-render(<App />, document.getElementById("app"));

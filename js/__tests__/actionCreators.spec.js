@@ -37,7 +37,7 @@ test("getAPIDetails", (done: Function) => {
             `http://localhost:3000/${testShow.imdbID}`
           );
           expect(dispatchMock).toBeCalledWith(addAPIData(testShow));
-          done();
+          done(); 
         });
     });
   });
